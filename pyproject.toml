@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "hexlet-code"
+version = "0.1.0"
+description = "page-loader, third project, while studying at hexlet, hope it will be done way more faster than previous one."
+authors = ["Ganesha_here <Jamper1488@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.6"
+pytest = "^6.2.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.2"
+flake8 = "^3.8.4"
+coverage = "^5.4"
+pytest-cov = "^2.11.1"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
