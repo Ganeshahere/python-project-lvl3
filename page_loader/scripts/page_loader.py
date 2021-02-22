@@ -1,27 +1,13 @@
-import argparse
-import os
-
-from page_loader.engine import download
-
-
-def get_args_parser():
-    parser = argparse.ArgumentParser(
-            description='Web parser',
-            prog='page-loader',
-            )
-    parser.add_argument('url', type=str)
-    parser.add_argument('-o',
-            '--output',
-            help='\n set output full-path',
-            default=os.getcwd(),
-            type=str,)
-    return parser
+#!/usr/bin/env/ python3
+from page_loader.cli import get_parser
+from page_loader import loading
 
 
 def main():
-    """Select format selection."""
-    args = get_args_parser().parse_args()
-    print(download(args.url, args.output))
+    parser = get_parser()
+    args = parser.parse_args()
+    path_to_downloaded = loading(args.url, args.output)
+    print(path_to_downloaded)
 
 
 if __name__ == '__main__':
