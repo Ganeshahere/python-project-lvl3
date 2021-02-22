@@ -1,4 +1,5 @@
 import sys
+import requests
 from usrlib.parse import urljoin
 import os
 import tempfile
