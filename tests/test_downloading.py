@@ -1,6 +1,6 @@
 import sys
 import requests
-from usrlib.parse import urljoin
+from urllib.parse import urljoin
 import os
 import tempfile
 from page_loader.loading import download
