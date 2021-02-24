@@ -7,7 +7,8 @@ from page_loader.loading import download
 import requests_mock
 
 
-with open('fixtures/page_with_local_links.html', 'r') as file:
+with open(os.path.abspath(os.path.join(os.pardir, 
+    'fixtures/page_with_local_links.html', 'r') as file:
     expected_page = file.read()
 
 
