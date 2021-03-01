@@ -4,7 +4,7 @@ from os import listdir
 import tempfile
 from page_loader.loading import download
 import requests_mock
-from urlparse import urljoin
+from urllib.parse import urljoin
 
 
 with open(abspath('fixtures/page_with_local_links.html')) as file:
