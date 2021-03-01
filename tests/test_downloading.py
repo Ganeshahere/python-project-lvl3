@@ -1,5 +1,6 @@
 import sys
-import os
+from os.path import abspath, join
+from os import listdir
 import tempfile
 from page_loader.loading import download
 import requests_mock
@@ -29,5 +30,5 @@ def test_download():
             with open(file_path, 'r') as file:
                 page = file.read()
             assert page == expected_page
-            assert len(os.listdir(tmpdirname)) == 2
-            assert len(os.listdir(os.path.join(tmpdirname, 'test-com_file'))) == 3
+            assert len(listdir(tmpdirname)) == 2
+            assert len(listdir(join(tmpdirname, 'test-com_file'))) == 3
