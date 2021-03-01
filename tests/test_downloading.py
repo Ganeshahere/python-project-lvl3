@@ -1,13 +1,12 @@
 import sys
-import requests
-from urllib.parse import urljoin
 import os
 import tempfile
 from page_loader.loading import download
 import requests_mock
+from urlparse import urljoin
 
 
-with open(os.path.abspath(os.path.join(os.pardir, 'fixtures/page_with_local_links.html', 'r') as file:
+with open(abspath('fixtures/page_with_local_links.html')) as file:
     expected_page = file.read()
 
 
@@ -18,7 +17,7 @@ RESOURCES_LINK = [urljoin(URL, 'assets/professions/nodejs.png'),
 
 
 def test_download():
-    with open(os.path.join(sys.path[0], 'fixtures/page_with_global_links.html'), 'r') as file:
+    with open(abspath('fixtures/page_with_global_links.html')) as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:
         with requests_mock.Mocker() as m:

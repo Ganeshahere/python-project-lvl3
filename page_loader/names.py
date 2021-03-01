@@ -13,7 +13,7 @@ def get_files_name(url_):
     parsed_url = parts.netloc + parts.path
     files_name = ''
     for i in parsed_url:
-        if i.salpha() or i.isdigit():
+        if i.isalpha() or i.isdigit():
             files_name += i
         else:
             files_name += '-'

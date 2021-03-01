@@ -8,7 +8,7 @@ cases = [
         'ru-hexlet-io-courses.html'
     ),
     (
-        'https://google.ru',
+        'https://www.google.ru',
         'www-google-ru.html'
     ),
     (
