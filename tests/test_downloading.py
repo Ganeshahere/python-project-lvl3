@@ -7,7 +7,7 @@ import requests_mock
 from urllib.parse import urljoin
 
 
-with open(abspath('fixtures/page_with_local_links.html')) as file:
+with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
     expected_page = file.read()
 
 
@@ -18,7 +18,7 @@ RESOURCES_LINK = [urljoin(URL, 'assets/professions/nodejs.png'),
 
 
 def test_download():
-    with open(abspath('fixtures/page_with_global_links.html')) as file:
+    with open(abspath('tests/fixtures/page_with_global_links.html')) as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:
         with requests_mock.Mocker() as m:
