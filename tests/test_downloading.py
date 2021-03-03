@@ -11,7 +11,7 @@ with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
     expected_page = file.read()
 
 
-URL = 'https://ru.hexlet.io/courses'
+URL = 'https://test.com'
 RESOURCES_LINK = [urljoin(URL, 'assets/professions/nodejs.png'),
                   urljoin(URL, 'assets/application.css'),
                   urljoin(URL, 'packs/js/runtime.js')]
