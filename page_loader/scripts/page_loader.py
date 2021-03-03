@@ -1,4 +1,5 @@
 #!/usr/bin/env/ python3
+from requests.exceptions import ConnectionError, HTTPError
 import sys
 from page_loader.cli import get_parser
 from page_loader import loading
@@ -13,7 +14,7 @@ def main():
         parser = get_parser()
         args = parser.parse_args()
         path_to_downloaded = loading(args.url, args.output)
-    except Exception as er:
+    except (OSError, PermissionError, HTTPError, ConnectionError) as er:
         logging.error(f"{er}")
         sys.exit(1)
     else:

@@ -2,15 +2,12 @@ import os
 from urllib.parse import urlparse, urljoin
 from bs4 import BeautifulSoup
 from page_loader.names import get_files_name
-import logging
-from page_loader.logging import set_logging
 
 
 tags = {'img': 'src', 'link': 'href', 'script': 'src'}
 
 
 def get_res(url, page, dir_for_download):
-    set_logging()
     dir_for_download, dir_name = os.path.split(dir_for_download)
     soup = BeautifulSoup(page, 'html.parser')
     blocks = filter(lambda x: is_local_res(x, url), soup.find_all(list(tags)))
@@ -21,7 +18,6 @@ def get_res(url, page, dir_for_download):
         block[tags[block.name]] = path_to_res
         res_links.append((link_to_res, os.path.join(dir_for_download,
             path_to_res)))
-    logging.info("Links are changed.")
     return res_links, soup.prettify(formatter='html5')
 
 
