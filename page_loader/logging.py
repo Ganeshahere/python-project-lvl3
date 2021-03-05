@@ -1,5 +1,7 @@
-import logging as log
+from logging import basicConfig as bC
+from logging import INFO
+import sys
 
 
 def set_logging():
-    log.basicConfig(level=log.info, format='%(levelname)s: %(message)s')
+    bC(level=INFO, stream=sys.stderr, format='%(levelname)s:%(message)s')
