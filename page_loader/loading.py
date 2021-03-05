@@ -19,7 +19,7 @@ def download(url, path_for_download=os.getcwd()):
     dir_for_download = os.path.splitext(path_to_file)[0] + '_files'
     resources, page = get_res(url, r.text, dir_for_download)
     write_to_file(page, path_to_file)
-    logging.info(f"'{url}' is downloaded into '{path_to_file}'.")
+    logging.info(f"'{url}' is downloaded into '{path_to_file}'")
     os.mkdir(dir_for_download)
     logging.info(f"Directory '{dir_for_download}' is created.")
     if resources:

@@ -13,7 +13,7 @@ def main():
         logging.info('Start downloading...')
         parser = get_parser()
         args = parser.parse_args()
-        path_to_downloaded = loading(args.url, args.output)
+        path_to_downloaded = loading.download(args.url, args.output)
     except (OSError, PermissionError, HTTPError, ConnectionError) as er:
         logging.error(f"{er}")
         sys.exit(1)

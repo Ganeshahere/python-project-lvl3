@@ -6,7 +6,7 @@ from page_loader.loading import download
 import os
 
 
-URL = 'https://ru.hexlet.io/cources'
+URL = 'https://test.com'
 
 
 def test_file_not_found():
