@@ -17,7 +17,7 @@ def download(url, path_for_download=os.getcwd()):
         r.raise_for_status()
     except requests.exceptions.HTTPError as er:
         raise LoadingError(f"The page wasn't "
-                f"loaded!\n{er}") from er
+                           f"loaded!\n{er}") from er
     except PermissionError as er:
         raise SomethingWrongError(f"Not enough rights for access\n{er}")
     dir_for_download = os.path.splitext(path_to_file)[0] + '_files'

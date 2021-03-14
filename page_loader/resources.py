@@ -14,7 +14,7 @@ def download_resources(resources, dir_for_download):
             os.mkdir(dir_for_download)
             logging.info(f"Directory '{dir_for_download}' is created.")
         bar = Bar('Downloading progress:', fill='*', suffix='%(percent)d%%',
-                max=len(resources)
+                max=len(resources))
         for resource in resources:
             link, path_to_file = resource
             try:

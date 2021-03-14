@@ -4,34 +4,28 @@ from os import listdir
 import tempfile
 from page_loader import download
 import requests_mock
-from urllib.parse import urljoin
-
+from urllib.parse import urljoin as urlj
 
 with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
     expected_page = file.read()
 
-
 with open(abspath('tests/fixtures/page_with_global_links.html')) as file:
     testing_page = file.read()
-
 
 with open(abspath('tests/fixtures/files/image.png')) as image:
     expected_image = image.read()
 
-
 with open(abspath('tests/fixtures/files/styles.css')) as styles:
     expected_styles_file = styles.read()
-
 
 with open(abspath('tests/fixtures/java_script/js')) as js:
     expected_js_file = js.read()
 
-
 URL = 'https://test.com'
-RESOURCES_LINK = {urljoin(URL: testing_page,
-    urljoin(URL, 'assets/professions/nodejs.png'): expected_image,
-    urljoin(URL, 'assets/application.css'): expected_styles_file,
-    urljoin(URL, 'packs/js/runtime.js'): expected_js_file}
+RESOURCES_LINK = {URL: testing_page,
+                  urlj(URL, 'assets/professions/nodejs.png'): expected_image,
+                  urlj(URL, 'assets/application.css'): expected_styles_file,
+                  urlj(URL, 'packs/js/runtime.js'): expected_js_file}
 
 
 def test_download():
