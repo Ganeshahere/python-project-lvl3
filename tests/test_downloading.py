@@ -43,7 +43,7 @@ def test_download():
                 else:
                     m.get(url, text=content)
             file_path = download(URL, tmpdirname)
-            dir_path = join(tmpdirname, 'test-com-files')
+            dir_path = join(tmpdirname, 'test-com_files')
             with open(file_path. 'r') as file:
                 page = file.read()
             with open(f"{dir_path}/test-"
