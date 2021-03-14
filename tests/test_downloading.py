@@ -2,7 +2,7 @@ import sys
 from os.path import abspath, join
 from os import listdir
 import tempfile
-from page_loader.loading import download
+from page_loader import download
 import requests_mock
 from urllib.parse import urljoin
 
@@ -44,14 +44,14 @@ def test_download():
                     m.get(url, text=content)
             file_path = download(URL, tmpdirname)
             dir_path = join(tmpdirname, 'test-com_files')
-            with open(file_path. 'r') as file:
+            with open(file_path, 'r') as file:
                 page = file.read()
             with open(f"{dir_path}/test-"
                       f"com-assets-professions-"
                       f"nodejs.png", 'rb') as image:
                 recived_image = image.read()
             with open(f"{dir_path}/test-"
-                      f"{com-assets-"
+                      f"com-assets-"
                       f"application.css", 'r') as s:
                 recived_styles_file = s.read()
             with open(f"{dir_path}/test-"

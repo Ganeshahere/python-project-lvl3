@@ -8,13 +8,13 @@ from progress.bar import Bar
 def download_resources(resources, dir_for_download):
     if resources:
         if os.path.isdir(dir_for_download):
-            logging.warning(f"Directory '{dir_for_download)' "
+            logging.warning(f"Directory '{dir_for_download}' "
                     f"already exists. Content may be changed.")
         else:
             os.mkdir(dir_for_download)
             logging.info(f"Directory '{dir_for_download}' is created.")
         bar = Bar('Downloading progress:', fill='*', suffix='%(percent)d%%',
-                max=len(resources))
+                max=len(resources)
         for resource in resources:
             link, path_to_file = resource
             try:
@@ -26,4 +26,4 @@ def download_resources(resources, dir_for_download):
         bar.finish()
         logging.debug(f"Resources was downloaded into '{dir_for_download}'")
     else:
-        logging,debug('This page has no resources.')
+        logging.debug('This page has no resources.')

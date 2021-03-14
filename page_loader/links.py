@@ -14,5 +14,5 @@ def get_res_links(url, page, dir_for_download):
         path_to_res = os.path.join(dir_name, to_file_name(link_to_res))
         block[tags[block.name]] = path_to_res
         res_links.append((link_to_res, os.path.join(dir_for_download,
-            path_to_res)))
+                                                    path_to_res)))
     return res_links, soup.prettify(formatter='html5')
