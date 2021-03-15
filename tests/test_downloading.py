@@ -57,4 +57,4 @@ def test_download():
             assert recived_styles_file == expected_styles_file
             assert recived_js_file == expected_js_file
             assert len(listdir(tmpdirname)) == 2
-            assert len(listdir(join(tmpdirname, 'test-com_files'))) == 3
+            assert len(listdir(join(tmpdirname, 'test-com_files'))) == 4
