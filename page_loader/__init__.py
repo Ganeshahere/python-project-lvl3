@@ -8,21 +8,28 @@ from page_loader.storage import save
 from page_loader.resources import download_resources
 
 
-def download(url, path_for_download=os.getcwd()):
-    path_to_file = os.path.join(path_for_download, to_file_name(url))
-    if os.path.exists(path_to_file):
-        logging.warning('File already exists, content going to change.')
+class PageLoadingError(requests.exceptions.HTTPError):
+    def __init__(self, error_message):
+        self.error_message = error_message
+
+
+def download(base_url, output_path):
+    path_to_file = os.path.join(output_path, to_file_name(base_url))
     try:
-        r = requests.get(url)
-        r.raise_for_status()
-    except requests.exceptions.HTTPError as er:
-        raise LoadingError(f"The page wasn't "
-                           f"loaded!\n{er}") from er
-    except PermissionError as er:
-        raise SomethingWrongError(f"Not enough rights for access\n{er}")
-    dir_for_download = os.path.splitext(path_to_file)[0] + '_files'
-    resources, page = get_res_links(url, r.text, dir_for_download)
+        request = requests.get(base_url)
+        requests.Response.raise_for_status(request)
+    except requests.exceptions.HTTPError as e:
+        raise PageLoadingError(e) from e
+
+    dir_path = os.path.splitext(path_to_file)[0] + '_files'
+    resources, page = save(base_url, request.text, dir_path)
     save(page, path_to_file)
-    logging.info(f"'{url}' is downloaded into '{path_to_file}'")
-    download_resources(resources, dir_for_download)
+
+    if os.path.isdir(dir_path):
+        logging.warning(f'{dir_path} already exists. Content can be changed')
+    else:
+        os.mkdir(dir_path)
+
+    if resources:
+        download_resources(resources, dir_path)
     return path_to_file

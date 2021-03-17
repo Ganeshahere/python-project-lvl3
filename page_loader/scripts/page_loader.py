@@ -1,25 +1,27 @@
 #!/usr/bin/env/ python3
-import sys
-import logging
 from page_loader.cli import get_parser
-from page_loader import download
+from page_loader import download, PageLoadingError
 from page_loader.logging import setup
-from page_loader.errors import SomethingWrongError
+import sys
 
 
 def main():
-    setup()
-    logging.info('Start downloading...')
     parser = get_parser()
     args = parser.parse_args()
     try:
-        path_to_downloaded = download(args.url, args.output)
-        logging.info('Downloading finished.')
-    except SomethingWrongError as er:
-        logging.error(f"{er}")
+        file_path = download(args.url, args.output)
+        print(f'Page saved in {file_path}')
+    except PageLoadingError as e:
+        setup.error(e.error_message)
+        sys.exit(1)
+    except PermissionError:
+        setup.error('Not enough access rights')
+        sys.exit(1)
+    except FileNotFoundError:
+        setup.error('No such file or directory')
         sys.exit(1)
     else:
-        print(f"Successfully! Page was downloaded into'{path_to_downloaded}'")
+        sys.exit(0)
 
 
 if __name__ == '__main__':

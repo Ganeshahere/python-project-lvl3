@@ -1,27 +1,18 @@
-import os 
+import os
 import re
-from urllib.parse import urlparse, urljoin
+from urllib.parse import urlparse
 
 
-tags = {'img': 'src', 'link': 'href', 'scripts': 'src'}
-
-
-def to_file_name(url_):
-    without_ext, ext = os.path.splitext(urlparse(url_).path)
+def to_file_name(base_url):
+    _, ext = os.path.splitext(urlparse(base_url).path)
     if ext:
-        url, ext = os.path.splitext(url_)
+        url, ext = os.path.splitext(base_url)
     else:
-        url = url_
         ext = '.html'
-    parts = urlparse(url)
-    parsed_url = parts.netloc + parts.path
-    name_parts = re.split('[^a-zA-Z0-9-]+', parsed_url)
-    files_name = '-'.join(name_parts) + ext
-    return files_name
-
-
-def is_local(block, url):
-    link = block.get(tags[block.name])
-    netloc1 = urlparse(url).netloc
-    netloc2 = urlparse(urljoin(url, link)).netloc
-    return netloc1 == netloc2
+        url = base_url
+    url_parts = re.split('[^a-zA-Z0-9]+', url)
+    url_parts.pop(0)
+    max_len = 10
+    while len(url_parts) > max_len:
+        url_parts.pop(0)
+    return '-'.join(url_parts) + ext
