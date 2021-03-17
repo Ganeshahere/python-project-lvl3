@@ -2,8 +2,6 @@ import os
 import logging
 import requests
 from page_loader.url import to_file_name
-from page_loader.errors import SomethingWrongError, LoadingError
-from page_loader.links import get_res_links
 from page_loader.storage import save
 from page_loader.resources import download_resources
 
