@@ -1,10 +1,10 @@
 import sys
 import requests_mock
 from page_loader.assets import prepare_assets
-import os
 from urllib.parse import urljoin
 import requests
 import tempfile
+from os.path import abspath, join
 
 
 BASE_URL = 'https://test.com'
@@ -15,13 +15,12 @@ RESOURCES_URL = [urljoin(BASE_URL, '/assets/application.css'),
 
 EXPECTED_CONTENT = RESOURCES_URL[:]
 
-
-with open(os.path.join(sys.path[0], 'fixtures/page_after.html'), 'r') as file:
+with open(join(sys.path[0], 'fixtures/page_with_local_links.html.html'), 'r') as file:
     expected_page = file.read()
 
 
 def test_page_loading():
-    with open(os.path.join(sys.path[0], 'fixtures/page_before.html'),
+    with open(join(sys.path[0], 'fixtures/page_with_global_links.html.html'),
               'r') as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:
@@ -30,8 +29,8 @@ def test_page_loading():
             [m.get(url, text=content) for url, content
              in zip(RESOURCES_URL, EXPECTED_CONTENT)]
             resources, page = prepare_assets(BASE_URL, testing_page,
-                                             os.path.join(tmpdirname,
-                                                          DIR_NAME))
+                                             join(tmpdirname,
+                                                  DIR_NAME))
             for resource, content in zip(resources, EXPECTED_CONTENT):
                 link, _ = resource
                 assert requests.get(link).text == content

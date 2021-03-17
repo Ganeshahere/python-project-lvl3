@@ -2,7 +2,8 @@ import tempfile
 import sys
 import requests_mock
 from page_loader import download
-import os
+from os.path import abspath, join
+from os import listdir
 from urllib.parse import urljoin
 
 
@@ -15,12 +16,12 @@ RESOURCES_URL = [urljoin(URL, '/assets/application.css'),
 EXPECTED_CONTENT = RESOURCES_URL[:]
 
 
-with open(os.path.join(sys.path[0], 'fixtures/page_after.html'), 'r') as file:
+with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
     expected_page = file.read()
 
 
 def test_page_loading():
-    with open(os.path.join(sys.path[0], 'fixtures/page_before.html'),
+    with open(join(sys.path[0], 'fixtures/page_with_global_links.html.html'),
               'r') as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:
@@ -31,6 +32,6 @@ def test_page_loading():
             file_path = download(URL, tmpdirname)
             with open(file_path, 'r') as file:
                 page = file.read()
-            assert len(os.listdir(tmpdirname)) == 2
-            assert len(os.listdir(os.path.join(tmpdirname, DIR_NAME))) == 3
+            assert len(listdir(tmpdirname)) == 2
+            assert len(listdir(join(tmpdirname, DIR_NAME))) == 3
             assert page == expected_page
