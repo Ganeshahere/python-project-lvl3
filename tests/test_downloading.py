@@ -21,7 +21,7 @@ with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
 
 
 def test_page_loading():
-    with open(join(sys.path[0], 'fixtures/page_with_global_links.html.html'),
+    with open(abspath('fixtures/page_with_global_links.html.html'),
               'r') as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:

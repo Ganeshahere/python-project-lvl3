@@ -3,7 +3,6 @@ import os
 from urllib.parse import urlparse, urljoin
 from page_loader.url import to_file_name
 
-
 tags = {'link': 'href', 'img': 'src', 'script': 'src'}
 
 

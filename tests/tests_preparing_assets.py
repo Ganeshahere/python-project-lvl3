@@ -15,12 +15,12 @@ RESOURCES_URL = [urljoin(BASE_URL, '/assets/application.css'),
 
 EXPECTED_CONTENT = RESOURCES_URL[:]
 
-with open(join(sys.path[0], 'fixtures/page_with_local_links.html.html'), 'r') as file:
+with open(abspath('tests/fixtures/page_with_local_links.html.html'), 'r') as file:
     expected_page = file.read()
 
 
 def test_page_loading():
-    with open(join(sys.path[0], 'fixtures/page_with_global_links.html.html'),
+    with open(abspath('tests/fixtures/page_with_global_links.html.html'),
               'r') as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:
