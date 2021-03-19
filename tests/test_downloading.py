@@ -6,7 +6,7 @@ from os import listdir
 from urllib.parse import urljoin
 
 
-URL = 'https://test.com'
+URL = 'https://hexlet.io/courses'
 DIR_NAME = 'test-com_files'
 RESOURCES_URL = [urljoin(URL, '/assets/application.css'),
                  urljoin(URL, '/assets/professions/nodejs.png'),
@@ -15,7 +15,7 @@ RESOURCES_URL = [urljoin(URL, '/assets/application.css'),
 EXPECTED_CONTENT = RESOURCES_URL[:]
 
 
-with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
+with open(abspath('tests/fixtures/page_with_local_links.html'), 'r') as file:
     expected_page = file.read()
 
 
