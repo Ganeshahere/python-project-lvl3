@@ -5,7 +5,6 @@ import requests_mock
 from page_loader import download
 import os
 
-
 URL = 'https://www.test.com'
 
 

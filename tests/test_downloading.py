@@ -1,5 +1,4 @@
 import tempfile
-import sys
 import requests_mock
 from page_loader import download
 from os.path import abspath, join
@@ -21,7 +20,7 @@ with open(abspath('tests/fixtures/page_with_local_links.html')) as file:
 
 
 def test_page_loading():
-    with open(abspath('tests/fixtures/page_with_global_links.html.html'),
+    with open(abspath('tests/fixtures/page_with_global_links.html'),
               'r') as file:
         testing_page = file.read()
     with tempfile.TemporaryDirectory() as tmpdirname:

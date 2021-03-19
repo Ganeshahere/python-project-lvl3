@@ -1,10 +1,9 @@
 import pytest
 from page_loader.url import to_file_name
 
-
 cases = [('https://ru.hexlet.io/courses', 'ru-hexlet-io-courses.html'),
-    ('https://www.google.ru', 'www-google-ru.html'),
-    ('https://klavogonki.ru/gamelist', 'klavogonki-ru-gamelist.html')]
+         ('https://www.google.ru', 'www-google-ru.html'),
+         ('https://klavogonki.ru/gamelist', 'klavogonki-ru-gamelist.html')]
 
 
 @pytest.mark.parametrize('url, expected', cases)

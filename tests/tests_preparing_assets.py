@@ -1,4 +1,3 @@
-import sys
 import requests_mock
 from page_loader.assets import prepare_assets
 from urllib.parse import urljoin
